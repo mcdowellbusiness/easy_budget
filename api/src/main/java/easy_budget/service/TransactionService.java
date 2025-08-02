@@ -76,4 +76,14 @@ public class TransactionService {
                 .mapToDouble(Transaction::getAmount)
                 .sum();
     }
+
+    /**
+     * Get the latest N transactions
+     */
+    public List<Transaction> getLatestTransactions(int limit) {
+        return transactionRepository.findAll().stream()
+                .sorted((t1, t2) -> t2.getId().compareTo(t1.getId())) // Sort by ID descending (newest first)
+                .limit(limit)
+                .toList();
+    }
 } 

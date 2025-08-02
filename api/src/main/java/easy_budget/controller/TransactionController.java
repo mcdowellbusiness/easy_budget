@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import easy_budget.model.Transaction;
 import easy_budget.service.TransactionService;
+import easy_budget.service.InsightsService;
 
 import java.util.List;
 
@@ -18,9 +19,11 @@ import java.util.List;
 public class TransactionController {
 
     private final TransactionService transactionService;
+    private final InsightsService insightsService;
 
-    public TransactionController(TransactionService transactionService) {
+    public TransactionController(TransactionService transactionService, InsightsService insightsService) {
         this.transactionService = transactionService;
+        this.insightsService = insightsService;
     }
 
     @GetMapping("/transactions")
@@ -62,5 +65,11 @@ public class TransactionController {
     public ResponseEntity<Double> getTotalAmountByCategory(@PathVariable String category) {
         double total = transactionService.getTotalAmountByCategory(category);
         return ResponseEntity.ok(total);
+    }
+
+    @GetMapping("/transactions/insights")
+    public ResponseEntity<String> getTransactionInsights() {
+        String insights = insightsService.transactionInsights();
+        return ResponseEntity.ok(insights);
     }
 }

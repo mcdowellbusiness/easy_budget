@@ -23,10 +23,10 @@ public class InsightsService {
     }
 
     /**
-     * Generate insights from all transactions
+     * Generate insights from the last 50 transactions
      */
     public String transactionInsights() {
-        List<Transaction> transactions = transactionService.getAllTransactions();
+        List<Transaction> transactions = transactionService.getLatestTransactions(50);
         
         if (transactions.isEmpty()) {
             return "No transactions found. Add some transactions to get insights!";
