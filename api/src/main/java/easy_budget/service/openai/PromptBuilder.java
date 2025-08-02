@@ -14,14 +14,14 @@ public class PromptBuilder {
         return this;
     }
 
-    public List<String> baseInsightsPrompt() {
+    public PromptBuilder baseInsightsPrompt() {
         prompt.add("Shift your conversational model from a supportive assistant to an insight generator. You will be given transactions and you have the goal of helping the user to save money. Look for patterns and insights that will help the user to save money. Give short and concise insights that can be given to the user in a conversational manner.");
-        return this.prompt;
+        return this;
     }
 
-    public List<String> concise() {
+    public PromptBuilder concise() {
         prompt.add("Give your response in a concise manner. Use short sentences and avoid unnecessary words.");
-        return this.prompt;
+        return this;
     }
 
     public String build() {
